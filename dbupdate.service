@@ -1,0 +1,12 @@
+[Unit]
+Description=dbupdate
+After=network-online.target
+[Service]
+User=pimyhouse
+ExecStart=/usr/bin/python dbupdate.py
+WorkingDirectory=/home/pimyhouse/temp-hum-sensor-backend
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+[Install]
+WantedBy=multi-user.target
