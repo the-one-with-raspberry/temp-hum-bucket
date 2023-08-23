@@ -1,0 +1,12 @@
+[Unit]
+Description=serv
+After=network-online.target
+[Service]
+ExecStart=/usr/bin/python api.py
+WorkingDirectory=/home/pimyhouse/temp-hum-sensor-backend
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pimyhouse
+[Install]
+WantedBy=multi-user.target
