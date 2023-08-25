@@ -43,11 +43,10 @@ Remove-Item -Path "TempInstaller.zip"
 C:\Windows\System32\Dism.exe /Apply-Image /ImageFile:(Join-Path -Path (Get-Location) -ChildPath "tempinstall\2020-05-27-raspios-buster-armhf.img") /Index:1 /ApplyDir:(Get-Item $dev)
 Remove-Item -Path "tempinstall"
 $countrycode = ((curl "http://ip-api.com/json/$(curl ifconfig.me)") | ConvertFrom-Json).countryCode
-$netconnname = Get-NetConnectionProfile
-$netconnname = $netconnname.Name
-$netconnpass = netsh.exe wlan show profile name="$($Script:netconnname)" key=clear
-$netconnpass = $netconnpass[32].Substring(("    Key Content            : ".Length))
-$countrycode | Out-File -LiteralPath (Join-Path -Path $dev -ChildPath "country_code_autogen")
+$netconnname = (Get-NetConnectionProfile).Name
+$netconnpass = (netsh.exe wlan show profile name="$($Script:netconnname)" key=clear)[32].Substring((("    Key Content            : ").Length))
 "country=$($countrycode)`nupdate_config=1`nctrl_interface=/var/run/wpa_supplicant`n`nnetwork={`n`tscan_ssid=1`n`tssid=`"$($Script:netconnname)`"`n`tpsk=`"$($Script:netconnpass)`"`n}" | Out-File -LiteralPath (Join-Path -Path $dev -ChildPath "wpa_supplicant.conf")
 "pimyhouse:`$6`$RRqhky76QNWIZo2f`$TwgoYjkENN/rG1.n25M2TNluzcbpUZMIG3DDg6LIe7uz1fs0AxLlqUE4C0otcX.vcDifsj.3hT9kQjC6NUrxQ/" | Out-File -LiteralPath (Join-Path -Path $dev -ChildPath "userconf.txt")
+$internetname = Read-Host "What do you want the Raspberry Pi's internet name name to be? (you can access it through `"http://temphumsensor(whatever you said)`")"
+Add-Content -Path .\firstboot.sh -Value "sudo raspi-config nonint do_hostname temphumsensor$($internetname)`nsudo reboot"
 Write-Host "`aInstall completed. Take the SD card out and insert it into the Raspberry Pi, then connect a micro USB cable to the port that says `"PWR IN`"."
