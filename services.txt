@@ -1,2 +1,2 @@
-https://raw.githubusercontent.com/the-one-with-raspberry/temp-hum-bucket/main/suserv.service?token=GHSAT0AAAAAACGC34CYZSTWYAEINJ7DT2H6ZHFY33Q
-https://raw.githubusercontent.com/the-one-with-raspberry/temp-hum-bucket/main/dbupdate.service?token=GHSAT0AAAAAACGC34CY3NQ2Y37KPU4MZUPMZHFY4DA
+https://raw.githubusercontent.com/the-one-with-raspberry/temp-hum-bucket/main/suserv.service
+https://raw.githubusercontent.com/the-one-with-raspberry/temp-hum-bucket/main/dbupdate.service
