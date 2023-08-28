@@ -5,7 +5,7 @@ python3 get-pip.py
 rm get-pip.py
 apt-get update -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false
 sudo apt-get install -y git unzip
-wget -O svctodownload.txt https://raw.githubusercontent.com/the-one-with-raspberry/temp-hum-bucket/main/services.txt?token=GHSAT0AAAAAACGC34CZAUSS5SWQFEKXVAM4ZHFZJOQ
+wget -O svctodownload.txt https://raw.githubusercontent.com/the-one-with-raspberry/temp-hum-bucket/main/services.txt
 wget -i svctodownload.txt
 mv *.service /etc/systemd/system
 rm svctodownload.txt
